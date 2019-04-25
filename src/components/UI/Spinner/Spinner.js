@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './Spinner.module.css';
 
-const spinner = () => (
-    <div className={classes.fullscreen}>
+const spinner = (props) => (
+    <div className={props.fullscreen ? classes.fullscreen : ''}>
         <div className={classes.Loader}>Loading...</div>
     </div>
 );

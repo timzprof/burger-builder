@@ -9,13 +9,24 @@ class Checkout extends Component {
 			bacon: 1,
 			cheese: 1
 		}
-	};
+    };
+    
+    componentDidMount() {
+        const query = new URLSearchParams(this.props.location.search);
+        const ingredients = {};
+        Array.from(query.entries()).forEach(param => {
+            ingredients[param[0]] = +param[1]
+        });
+        this.setState({ ingredients });
+    }
 
 	checkoutCancelled = () => {
 		this.props.history.goBack();
 	};
 
-	checkoutContinued = () => {};
+	checkoutContinued = () => {
+        this.props.history.replace('/checkout/contact-data');
+    };
 	render() {
 		return (
 			<div>

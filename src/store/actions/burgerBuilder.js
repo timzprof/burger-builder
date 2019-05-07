@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import client from '../../axios-orders';
 
 export const addIngredient = (payload) => {
     return {
@@ -7,7 +8,7 @@ export const addIngredient = (payload) => {
             ingredientName: payload.name
         }
     }
-}
+};
 
 export const removeIngredient = (payload) => {
     return {
@@ -16,4 +17,32 @@ export const removeIngredient = (payload) => {
             ingredientName: payload.name
         }
     }
-}
+};
+
+export const setIngredients = (ingredients) => {
+    return {
+        type: actionTypes.SET_INGREDIENTS,
+        payload: {
+            ingredients
+        }
+    }
+};
+
+export const fetchIngredientsFailed = () => {
+    return {
+        type: actionTypes.FETCH_INGREDIENTS_FAILED
+    };
+};
+
+export const initIngredients = () => {
+    return dispatch => {
+        client
+			.get("/ingredients.json")
+			.then(response => {
+                dispatch(setIngredients(response.data));
+			})
+			.catch(error => {
+				dispatch(fetchIngredientsFailed());
+			});
+    }
+};

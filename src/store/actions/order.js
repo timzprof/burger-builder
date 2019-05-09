@@ -40,4 +40,42 @@ export const purchaseInit = () => {
     return {
         type: actionTypes.PURCHASE_INIT
     };
+};
+
+
+export const fectchOrdersSuccess = (orders) => {
+    return {
+        type: actionTypes.FETCH_ORDERS_SUCCESS,
+        orders
+    };
+};
+
+export const fectchOrdersFail = (error) => {
+    return {
+        type: actionTypes.PURCHASE_ORDER_FAILED,
+        error
+    };
 }
+
+export const fectchOrdersStart = () => {
+    return {
+        type: actionTypes.FETCH_ORDERS_START
+    };
+};
+
+export const fetchOrders = () => {
+    return dispatch => {
+        dispatch(fectchOrdersStart());
+        client
+			.get("/orders.json")
+			.then(res => {
+				const fetchedOrders = Object.keys(res.data).map(key => {
+					return { ...res.data[key], id: key };
+                });
+				dispatch(fectchOrdersSuccess(fetchedOrders));
+			})
+			.catch(error => {
+				dispatch(fectchOrdersFail(error));
+            });
+    };
+};

@@ -17,8 +17,8 @@ class ContactData extends Component {
 				elementConfig: {
 					type: "text",
 					placeholder: "Your Name",
-					value: ""
 				},
+				value: "",
 				validation: {
 					required: true
 				},
@@ -30,8 +30,8 @@ class ContactData extends Component {
 				elementConfig: {
 					type: "text",
 					placeholder: "Street",
-					value: ""
 				},
+				value: "",
 				validation: {
 					required: true
 				},
@@ -42,9 +42,9 @@ class ContactData extends Component {
 				elementType: "input",
 				elementConfig: {
 					type: "text",
-					placeholder: "ZIP Code",
-					value: ""
+					placeholder: "ZIP Code"
 				},
+				value: "",
 				validation: {
 					required: true,
 					minLength: 5,
@@ -59,8 +59,8 @@ class ContactData extends Component {
 				elementConfig: {
 					type: "text",
 					placeholder: "Country",
-					value: ""
 				},
+				value: "",
 				validation: {
 					required: true
 				},
@@ -72,8 +72,8 @@ class ContactData extends Component {
 				elementConfig: {
 					type: "email",
 					placeholder: "Your Email",
-					value: ""
 				},
+				value: "",
 				validation: {
 					required: true,
 					isEmail: true

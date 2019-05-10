@@ -22,11 +22,11 @@ export const purchaseBurgerStart = () => {
     };
 };
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData, token) => {
     return dispatch => {
         dispatch(purchaseBurgerStart());
         client
-			.post("/orders.json", orderData)
+			.post("/orders.json?auth=" + token, orderData)
 			.then(response => {
 				dispatch(purchaseBurgerSuccess(response.data.name, orderData));
 			})
@@ -63,11 +63,11 @@ export const fectchOrdersStart = () => {
     };
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
     return dispatch => {
         dispatch(fectchOrdersStart());
         client
-			.get("/orders.json")
+			.get("/orders.json?auth=" + token)
 			.then(res => {
 				const fetchedOrders = Object.keys(res.data).map(key => {
 					return { ...res.data[key], id: key };

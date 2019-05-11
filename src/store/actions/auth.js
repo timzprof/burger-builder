@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
-const API_KEY = 'AIzaSyBv5YY62yP3Q3CtqzCVfF8JSvfSJHVc7qQ';
+const { REACT_APP_API_KEY: API_KEY } = process.env;
 
 export const authStart = () => {
     return {

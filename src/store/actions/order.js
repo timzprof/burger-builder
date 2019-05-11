@@ -63,11 +63,12 @@ export const fectchOrdersStart = () => {
     };
 };
 
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
     return dispatch => {
         dispatch(fectchOrdersStart());
-        client
-			.get("/orders.json?auth=" + token)
+        const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
+        client 
+			.get("/orders.json" + queryParams)
 			.then(res => {
 				const fetchedOrders = Object.keys(res.data).map(key => {
 					return { ...res.data[key], id: key };
